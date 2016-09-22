@@ -1,6 +1,6 @@
 /*
 	react mixins
-	可以对不同组件的相同部分进行统一配置
+	可以对不同组件的相同部分进行统一配置, 比如在componentWillUnmount中统一清除定时器, 触发函数的时候统一进行埋点等
 */
 import React from 'react'
 
