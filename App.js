@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
 import ReactDOM from 'react-dom'
-/*// Ò²¿ÉÒÔÊ¹ÓÃReact.createClassµÄĞ´·¨
-// class Ğ´·¨µÄ×é¼ş¿ÉÒÔÅäÖÃ¸ü¶àµÄstateµÈÊôĞÔ
+/*// ä¹Ÿå¯ä»¥ä½¿ç”¨React.createClassçš„å†™æ³•
+// class å†™æ³•çš„ç»„ä»¶å¯ä»¥é…ç½®æ›´å¤šçš„stateç­‰å±æ€§
 class App extends React.Component {
 
 	constructor() {
@@ -16,9 +16,9 @@ class App extends React.Component {
 	}
 
 	render() {
-		let txt = this.props.txt // Í¨¹ıpropTypesÓëdefaultPropsÉè¶¨µÄtxtÊÇ°ó¶¨ÔÚ×é¼ş±êÇ©µÄÊôĞÔÉÏµÄÖµ
-		// ¾­µäµÄjsxĞ´·¨
-		// ÕâÀïÒª×¢ÒâthisµÄ°ó¶¨
+		let txt = this.props.txt // é€šè¿‡propTypesä¸defaultPropsè®¾å®šçš„txtæ˜¯ç»‘å®šåœ¨ç»„ä»¶æ ‡ç­¾çš„å±æ€§ä¸Šçš„å€¼
+		// ç»å…¸çš„jsxå†™æ³•
+		// è¿™é‡Œè¦æ³¨æ„thisçš„ç»‘å®š
 		return (
 			<div>
 				<input type="text" onChange={e => this.update(e)} value={this.state.todoTxt}/>
@@ -26,7 +26,7 @@ class App extends React.Component {
 				<p>Hello {txt}</p>
 			</div>
 		)
-		// Ò²¿ÉÒÔÓÃreact createElementĞ´·¨
+		// ä¹Ÿå¯ä»¥ç”¨react createElementå†™æ³•
 		// return React.createElement('div', {
 		// 	className: 'app-box'
 		// }, 'Hello App React')
@@ -35,23 +35,23 @@ class App extends React.Component {
 
 }
 
-// ¼ò»¯°æµÄjsxĞ´·¨, Ö»ÄÜÍ¨¹ıµ÷ÓÃ×é¼şÊ±µÄ±êÇ©propsÀ´´«Öµ£¬ÒòÎªÕâÑùĞ´Ã»·¨ÉèÖÃstate
+// ç®€åŒ–ç‰ˆçš„jsxå†™æ³•, åªèƒ½é€šè¿‡è°ƒç”¨ç»„ä»¶æ—¶çš„æ ‡ç­¾propsæ¥ä¼ å€¼ï¼Œå› ä¸ºè¿™æ ·å†™æ²¡æ³•è®¾ç½®state
 // const App = ({txt}) => (
 // 	<div className="app-box">hello {txt}</div>
 // )
 
-// propTypesÊÇReactÖĞ¶Ô×é¼şÖĞÊôĞÔÖµÀàĞÍµÄÉè¶¨, ÒÔÈ·±£×é¼şµÄ¿É¿ØĞÔ, Èç¹ûÌí¼ÓÁËisRequired, Ôò±ØĞë¸ø×é¼şµÄÕâ¸öÊôĞÔ¸³Öµ
+// propTypesæ˜¯Reactä¸­å¯¹ç»„ä»¶ä¸­å±æ€§å€¼ç±»å‹çš„è®¾å®š, ä»¥ç¡®ä¿ç»„ä»¶çš„å¯æ§æ€§, å¦‚æœæ·»åŠ äº†isRequired, åˆ™å¿…é¡»ç»™ç»„ä»¶çš„è¿™ä¸ªå±æ€§èµ‹å€¼
 App.propTypes = {
 	// txt: PropTypes.string
 	txt: PropTypes.string.isRequired
 }
 
-// ¶ødefaultPropsÔò¿ÉÒÔ¸ø×é¼şµÄÊôĞÔ¸³Ä¬ÈÏÖµ
+// è€ŒdefaultPropsåˆ™å¯ä»¥ç»™ç»„ä»¶çš„å±æ€§èµ‹é»˜è®¤å€¼
 App.defaultProps = {
 	txt: 'xiongxiong109'
 }*/
 
-// ×é¼şÖ®¼äµÄ¹ØÏµ (¸¸×Ó×é¼ş), refs (reactÖĞÁ¬½ÓĞéÄâdomÓëÕæÊµdomµÄ·½·¨)
+// ç»„ä»¶ä¹‹é—´çš„å…³ç³» (çˆ¶å­ç»„ä»¶), refs (reactä¸­è¿æ¥è™šæ‹Ÿdomä¸çœŸå®domçš„æ–¹æ³•)
 // class App extends React.Component {
 // 	constructor() {
 // 		super()
@@ -60,11 +60,11 @@ App.defaultProps = {
 // 			g: 128,
 // 			b: 128
 // 		}
-// 		this.update = this.update.bind(this) // Èç¹û²»Í¨¹ıÔª±à³ÌÀ´¸Ä±äĞéÄâdomÉÏµÄthisµÄÖ¸Ïò,Ëü»áÖ¸ÏòwindowµÈÈ«¾Ö¶ÔÏó
+// 		this.update = this.update.bind(this) // å¦‚æœä¸é€šè¿‡å…ƒç¼–ç¨‹æ¥æ”¹å˜è™šæ‹Ÿdomä¸Šçš„thisçš„æŒ‡å‘,å®ƒä¼šæŒ‡å‘windowç­‰å…¨å±€å¯¹è±¡
 // 	}
 
 // 	update(e) {
-// 		// refs¿ÉÒÔ¸ù¾İ×é¼şÒ»²ãÒ»²ãÍùÏÂÕÒ
+// 		// refså¯ä»¥æ ¹æ®ç»„ä»¶ä¸€å±‚ä¸€å±‚å¾€ä¸‹æ‰¾
 // 		this.setState({
 // 			r: ReactDOM.findDOMNode(this.refs.r.refs.ipt).value,
 // 			g: ReactDOM.findDOMNode(this.refs.g.refs.ipt).value,
@@ -86,7 +86,7 @@ App.defaultProps = {
 // 	}
 // }
 
-// ÕâÖÖ×é¼şÊôÓÚstateless function, ÕâÖÖ×é¼ş²»ÄÜ¸ørefsÊôĞÔ¸³Öµ
+// è¿™ç§ç»„ä»¶å±äºstateless function, è¿™ç§ç»„ä»¶ä¸èƒ½ç»™refså±æ€§èµ‹å€¼
 // const Slider = (props) => (
 // 		<input type="range"
 // 			onChange={props.update} />
@@ -115,9 +115,9 @@ App.defaultProps = {
 // 	}></div>
 // )
 
-// React Í¨¹ı{this.props.children}»ñÈ¡×Ó×é¼ş
+// React é€šè¿‡{this.props.children}è·å–å­ç»„ä»¶
 /*
-ÀàËÆÓÚangularÖ¸ÁîÖĞµÄtransclude£¬¿ÉÒÔ½«×é¼ş±êÇ©ÖĞ»ñÈ¡µ½µÄÄÚÈİÇ¶Èëµ½ÁíÒ»¸ö×é¼ş(Ò»°ãÊÇ¸¸¼¶×é¼ş)ÖĞ
+ç±»ä¼¼äºangularæŒ‡ä»¤ä¸­çš„transcludeï¼Œå¯ä»¥å°†ç»„ä»¶æ ‡ç­¾ä¸­è·å–åˆ°çš„å†…å®¹åµŒå…¥åˆ°å¦ä¸€ä¸ªç»„ä»¶(ä¸€èˆ¬æ˜¯çˆ¶çº§ç»„ä»¶)ä¸­
 */
 
 // class App extends React.Component {
@@ -142,7 +142,7 @@ App.defaultProps = {
 
 // class AppBtn extends React.Component {
 // 	render() {
-// 		console.log(this.props.children) // AppBtnÖĞ°ü¹üµÄÔªËØ»á¸ù¾İ±êÇ©ºÍÎÄ±¾½øĞĞ·Ö¸î, È»ºóĞÎ³ÉÒ»¸öchildrenÊı×é
+// 		console.log(this.props.children) // AppBtnä¸­åŒ…è£¹çš„å…ƒç´ ä¼šæ ¹æ®æ ‡ç­¾å’Œæ–‡æœ¬è¿›è¡Œåˆ†å‰², ç„¶åå½¢æˆä¸€ä¸ªchildrenæ•°ç»„
 // 		return (
 // 			<div>
 // 				<p ref="btnTxt">hello{this.props.children[0]}</p>
@@ -156,82 +156,148 @@ App.defaultProps = {
 // 	<i>heart</i>
 // )
 
-// react×é¼şµÄÉúÃüÖÜÆÚ
+// reactç»„ä»¶çš„ç”Ÿå‘½å‘¨æœŸ
 /*
- ×é¼şµÄÉúÃüÖÜÆÚÓĞÈı¸ö×´Ì¬£ºcomponentWillMount(¼´½«¼ÓÔØ)¡¢componentDidMount(¼ÓÔØÍê±Ï)¡¢componentWillUnmount(¼´½«Ğ¶ÔØ)
- ÔÙ¼ÓÉÏrender(×é¼şäÖÈ¾)
+ ç»„ä»¶çš„ç”Ÿå‘½å‘¨æœŸçš„mountï¼š
+ componentWillMount(å³å°†åŠ è½½)
+ componentDidMount(åŠ è½½å®Œæ¯•)
+ componentWillUnmount(å³å°†å¸è½½)
+ å†åŠ ä¸Šrender(ç»„ä»¶æ¸²æŸ“)
+*/
+
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<div>{this.props.children}</div>
+// 		)
+// 	}
+// }
+
+// class Wrapper extends React.Component {
+
+// 	constructor() {
+// 		super()
+// 		this.state = {
+// 			isLoading: true
+// 		}
+// 	}
+
+// 	componentWillMount() {
+// 		console.log('loading...')
+// 	}
+// 	render() {
+// 		console.log('render wrapper') // ç¥å¥‡çš„äº‹æƒ…å‘ç”Ÿäº†, addBtnåœ¨renderçš„æ—¶å€™, å¹¶ä¸ä¼šè°ƒç”¨wrapperçš„renderæ–¹æ³• 
+// 		return (
+// 			<App>
+// 				<Loading isShow={this.state.isLoading}></Loading>
+// 				<AddBtn />
+// 				<AddBtn />
+// 			</App>
+// 		)
+// 	}
+// 	componentDidMount() {
+// 		let _W = this;
+// 		console.log('mounted')
+// 		setTimeout(() => {
+// 			_W.setState({'isLoading': false})
+// 			// ä¹Ÿå¯ä»¥é€šè¿‡åº•å±‚æ–¹æ³•å¸è½½ç»„ä»¶
+// 			// ReactDOM.unmountComponentAtNode(document.querySelector('#app'));
+// 		}, 500);
+// 	}
+// 	componentWillUnmount() { // ç»„ä»¶è¢«å¸è½½
+// 		console.log('hide')
+// 	}
+// }
+
+// class AddBtn extends React.Component {
+
+// 	constructor() {
+// 		super()
+// 		this.state = {
+// 			val: 0
+// 		}
+// 		this.addValue = this.addValue.bind(this)
+// 	}
+// 	addValue() {
+// 		let v = this.state.val + 1
+// 		this.setState({val: v})
+// 	}
+// 	render() {
+// 		console.log('render addBtn')
+// 		return (
+// 			<div className="add-btn">
+// 				<span>{this.state.val}</span>
+// 				<button onClick={this.addValue}>add</button>
+// 			</div>
+// 		)
+// 	}
+// }
+
+// const Loading = (props) => (
+// 	<i style={ { display: props.isShow ? 'block' : 'none'} }>loading...</i>
+// )
+
+/*
+	ç»„ä»¶ç”Ÿå‘½å‘¨æœŸçš„update: 
+	componentWillReceiveProps: ç»„ä»¶å³å°†æ¥æ”¶æ–°çš„å±æ€§çš„æ—¶å€™
+	shouldComponentUpdate: åˆ¤æ–­ç»„ä»¶çš„ä¸‹ä¸€ä¸ªçŠ¶æ€æ˜¯å¦åº”è¯¥è¢«æ›´æ–°
+	componentWillUpdate: ç»„ä»¶å³å°†æ›´æ–°çš„æ—¶å€™
+	componentDidUpdate: ç»„ä»¶çŠ¶æ€æ›´æ–°å®Œæ¯•
+	å…¶å®react-routerçš„åŸç†å°±æ˜¯åˆ©ç”¨äº†reactç»„ä»¶çš„ç”Ÿå‘½å‘¨æœŸ,æ¥ç®¡ç†ç»„ä»¶çš„å„ç§å †æ ˆçŠ¶æ€
 */
 
 class App extends React.Component {
-	render() {
-		return (
-			<div>{this.props.children}</div>
-		)
-	}
-}
-
-class Wrapper extends React.Component {
 
 	constructor() {
 		super()
 		this.state = {
-			isLoading: true
+			"canIncrease": false,
+			"val": 0
 		}
+		this.update = this.update.bind(this)
 	}
-
-	componentWillMount() {
-		console.log('loading...')
+	update() {
+		let val = this.state.val;
+		this.setState({
+			"val": val + 1
+		})
+		// console.log(this.state.val)
 	}
-	render() {
-		console.log('render wrapper') // ÉñÆæµÄÊÂÇé·¢ÉúÁË, addBtnÔÚrenderµÄÊ±ºò, ²¢²»»áµ÷ÓÃwrapperµÄrender·½·¨ 
+ 	render() {
 		return (
-			<App>
-				<Loading isShow={this.state.isLoading}></Loading>
-				<AddBtn />
-				<AddBtn />
-			</App>
-		)
-	}
-	componentDidMount() {
-		let _W = this;
-		console.log('mounted')
-		setTimeout(() => {
-			_W.setState({'isLoading': false})
-			// Ò²¿ÉÒÔÍ¨¹ıµ×²ã·½·¨Ğ¶ÔØ×é¼ş
-			// ReactDOM.unmountComponentAtNode(document.querySelector('#app'));
-		}, 500);
-	}
-	componentWillUnmount() { // ×é¼ş±»Ğ¶ÔØ
-		console.log('hide')
-	}
-}
-
-class AddBtn extends React.Component {
-
-	constructor() {
-		super()
-		this.state = {
-			val: 0
-		}
-		this.addValue = this.addValue.bind(this)
-	}
-	addValue() {
-		let v = this.state.val + 1
-		this.setState({val: v})
-	}
-	render() {
-		console.log('render addBtn')
-		return (
-			<div className="add-btn">
-				<span>{this.state.val}</span>
-				<button onClick={this.addValue}>add</button>
-			</div>
+			<Button val={this.state.val} onClick={this.update}>{this.state.val}</Button>
 		)
 	}
 }
 
-const Loading = (props) => (
-	<i style={ { display: props.isShow ? 'block' : 'none'} }>loading...</i>
-)
+class Button extends React.Component {
+	/*
+		ä¸€ä¸ªç»„ä»¶çš„propså±æ€§ä¸€èˆ¬ç”±å®ƒçš„çˆ¶ç»„ä»¶é€šè¿‡æ ‡ç­¾ä¼ å…¥
+		åœ¨å­ç»„ä»¶é‡Œå°±å¯ä»¥é€šè¿‡props update æ¥ç®¡ç†ç»„ä»¶çš„propsçŠ¶æ€
+	*/
+	componentWillReceiveProps(nextProps) {
+		console.log('will receive')
+		console.log(nextProps)
+	}
+	/*shouldComponentUpdateæ˜¯ä¸€ä¸ªpure function, å®ƒå¿…é¡»æœ‰ä¸€ä¸ªbooleanç±»å‹çš„è¿”å›å€¼, æ ¹æ®è¿™ä¸ªè¿”å›å€¼æ¥åˆ¤æ–­æ˜¯å¦éœ€è¦æ”¹å˜çŠ¶æ€*/
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.val % 5 === 0
+	}
+	componentWillUpdate(nextProps, nextState) {
+		console.log('will update')
+		console.log(nextProps)
+	}
+	componentDidUpdate(prevProps, prevState) {
+		console.log('updated')
+		console.log(prevProps)
+	}
 
-export default Wrapper
+	render() {
+		return (
+			<button onClick={this.props.onClick}>{this.props.children}</button>
+		)
+	}
+
+}
+
+export default App
