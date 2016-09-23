@@ -15,6 +15,7 @@ class App extends React.Component {
 		}
 		this.toBase64 = this.toBase64.bind(this)
 		this.updateProgress = this.updateProgress.bind(this)
+		this.resetData = this.resetData.bind(this)
 	}
 	updateProgress(v) {
 		this.setState({progress: v})
@@ -50,14 +51,16 @@ class App extends React.Component {
 
 	}
 
-	componentDidMount() {
+	resetData() {
 		let _this = this
-		this.refs.pro.refs.inner.addEventListener('webkitTransitionEnd', () => {
-			this.setState({isLoading: false})
-			setTimeout(() => {
-				_this.setState({progress: 0})
-			}, 300)
-		}, false)
+		this.setState({isLoading: false})
+		setTimeout(() => {
+			_this.setState({progress: 0})
+		}, 300)
+	}
+	componentDidMount() {
+		this.refs.pro.refs.inner.addEventListener('webkitTransitionEnd', this.resetData, false)
+		this.refs.pro.refs.inner.addEventListener('transitionEnd', this.resetData, false)
 	}
 
 	render() {
@@ -82,6 +85,7 @@ class App extends React.Component {
 	// 销毁file reader对象
 	componentWillUnmount() {
 		this.refs.pro.refs.inner.removeEventListener('webkitTransitionEnd')
+		this.refs.pro.refs.inner.removeEventListener('transitionEnd')
 		this.fileReader.onprogress = null
 		this.fileReader.onloadend = null
 	}
