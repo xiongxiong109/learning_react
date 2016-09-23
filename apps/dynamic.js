@@ -89,7 +89,7 @@ class EditableDom extends React.Component {
 		return (
 			<td>
 				{
-					(() => {
+					(() => { // 在jsx语法中, 做条件状语从句得用闭包
 						if (this.state.isEditable) {
 							return <Ipt toggle={this.toggle} change={this.update} val={this.state.val}/>
 						} else {
