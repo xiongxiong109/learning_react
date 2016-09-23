@@ -10,9 +10,8 @@ class App extends React.Component {
 		super()
 		this.state = {
 			base64: '',
-			sourceCode: '',
 			progress: 0,
-			isCompleted: false
+			isLoading: false
 		}
 		this.toBase64 = this.toBase64.bind(this)
 		this.updateProgress = this.updateProgress.bind(this)
@@ -22,13 +21,14 @@ class App extends React.Component {
 	}
 	toBase64(e) {
 		let file = e.currentTarget.files[0]
-		this.fileReader.readAsDataURL(file)
+		if (file) {
+			this.fileReader.readAsDataURL(file)
+		}
 	}
 	// 挂载reader事件监听
 	componentWillMount() {
 
 		this.fileReader = new FileReader()
-
 		this.fileReader.onloadstart = (e) => {
 			this.setState({base64: ''});
 		}
@@ -36,7 +36,16 @@ class App extends React.Component {
 			this.updateProgress(e.loaded / e.total * 100)
 		}
 		this.fileReader.onloadend = (e) => {
-			this.setState({isCompleted: true, base64: e.target.result})
+			var totalMB = e.total / 1024;
+			if (totalMB >= 200) { // 大于200K不进行转码
+				alert('文件过大')
+			} else {
+				let _this = this
+				this.setState({isLoading: true})
+				setTimeout(() => {
+					_this.setState({base64: e.target.result})
+				}, 300)
+			}
 		}
 
 	}
@@ -44,7 +53,7 @@ class App extends React.Component {
 	componentDidMount() {
 		let _this = this
 		this.refs.pro.refs.inner.addEventListener('webkitTransitionEnd', () => {
-			this.setState({isCompleted: false})
+			this.setState({isLoading: false})
 			setTimeout(() => {
 				_this.setState({progress: 0})
 			}, 300)
@@ -54,9 +63,19 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="file-wrap">
-				<FileBtn toBase64={this.toBase64} isCompleted={this.state.isCompleted}>请选择文件</FileBtn>
-				<FileProgress ref="pro" progress={this.state.progress} isCompleted={this.state.isCompleted}></FileProgress>
-				<FileRst>{this.state.base64}</FileRst>
+				<FileBtn toBase64={this.toBase64} isLoading={this.state.isLoading}>
+					{
+						(() => {
+							if (this.state.isLoading) {
+								return <div className="loading-wrap"><i className="loading-span"></i>uploading...</div>
+							} else {
+								return 'to Base64'
+							}
+						})()						
+					}
+				</FileBtn>
+				<FileProgress ref="pro" progress={this.state.progress} isLoading={this.state.isLoading}></FileProgress>
+				<FileRst base64={this.state.base64} />
 			</div>
 		)
 	}
@@ -71,7 +90,7 @@ class App extends React.Component {
 const FileBtn = (props) => (
 	<div className="file-input">
 		<span>{props.children}</span>
-		<input type="file" onChange={props.toBase64} disabled={props.isCompleted}/>
+		<input type="file" onChange={props.toBase64}/>
 	</div>
 )
 
@@ -81,7 +100,7 @@ class FileProgress extends React.Component {
 			<div className="file-progress">
 				<div className="pro-inner" ref="inner" style={ {
 					width: this.props.progress + '%',
-					opacity: this.props.isCompleted ? '1' : '0'
+					opacity: this.props.isLoading ? '1' : '0'
 				} }></div>
 			</div>
 		)
@@ -89,7 +108,7 @@ class FileProgress extends React.Component {
 }
 
 const FileRst = (props) => (
-	<div className="file-rst">{props.children}</div>
+	<textarea className="file-rst" value={props.base64} readOnly="readonly"></textarea>
 )
 
 export default App
