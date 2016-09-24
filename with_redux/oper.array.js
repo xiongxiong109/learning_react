@@ -24,7 +24,14 @@ const arrayReducer = (state = [], action) => {
 			]
 		break;
 		case 'DELETE':
-			return state.filter(n => n !== action.num)
+			if (action.idx) { // 优先根据索引删除
+				return [
+					...state.slice(0, action.idx),
+					...state.slice(action.idx + 1)
+				]
+			} else if (action.num) { // 其次根据数值删除
+				return state.filter(n => n !== action.num)
+			}
 		break;
 		default:
 			return state;
@@ -48,7 +55,8 @@ class App extends React.Component {
 		store.dispatch({type: 'PUSH', num: 12}); // [8, 12]
 		store.dispatch({type: 'INSERT', num: 66, idx: 1}); // [8, 66, 12]
 		store.dispatch({type: 'INSERT', num: 88, idx: 2}); // [8, 66, 88, 12]
-		store.dispatch({type: 'DELETE', num: 88}); // [8, 66, 12]
+		// store.dispatch({type: 'DELETE', num: 88}); // [8, 66, 12]
+		store.dispatch({type: 'DELETE', idx: 1}); // [8, 88, 12]
 	}
 
 	componentDidMount() {
