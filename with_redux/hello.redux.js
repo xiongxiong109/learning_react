@@ -38,7 +38,7 @@ const createStore = (reducer) => {
 
 	const getState = () => state;
 
-	// 程序初始调用一次
+	// 程序初始
 	dispatch({});
 
 	return {dispatch, getState, subscribe}
