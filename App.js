@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './apps/toBase64'
+import App from './with_redux/hello.redux'
 
 export default App
