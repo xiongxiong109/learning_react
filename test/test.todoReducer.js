@@ -45,7 +45,7 @@ describe('todo reducer', () => {
 		stateBefore = store.getState()
 	})
 
-	it('should be equal', () => {
+	it('should have the truly value after dispatching', () => {
 		stateAfter.forEach((item, idx) => {
 			for (var key in item) {
 				expect(item[key]).to.equal(stateBefore[idx][key])
