@@ -91,7 +91,7 @@ let store = createStore(todoReducers)
 store.subscribe(() => {
 	console.log(store.getState())
 	render(
-		<TodoList {...store.getState()}></TodoList>,
+		<TodoApp {...store.getState()}></TodoApp>,
 		document.querySelector('#app')
 	)
 })
@@ -114,7 +114,65 @@ const FilterLinks = ({ filter, children, currentFilter }) => {
 
 }
 
-class TodoList extends React.Component {
+// 将dom搬离出来, 然后可以把key加在组件上
+const TodoItem = ({
+	onClick,
+	isCompleted,
+	txt
+}) => (
+		<li
+			// key=item.id
+			onClick={onClick}
+			style={
+				{
+					textDecoration: isCompleted ? 'line-through' : 'none'
+				}
+			}
+	>{txt}</li>
+)
+
+/*
+	这里的onTodoClick的写法涉及到了js变量的作用域问题
+	onTodoClick未指定var、let类型
+	那么它会顺着作用域往上找, 那么这里的onTodoClick最终会找到TodoApp中的onTodoClick去
+*/
+const TodoList = ({todos, onTodoClick}) => (
+	<ul>
+		{
+			todos.map(item =>
+				<TodoItem {...item} key={item.id} onClick={() => onTodoClick(item.id)}/>
+			)
+		}
+	</ul>
+)
+
+// todoIpt
+
+const TodoIpt = ({onAddClick}) => {
+	let input
+	return (
+		<div className="input-wrap">
+			<input type="text" ref={ node => input = node } />
+			<button onClick={() => {
+				onAddClick(input.value)
+				input.value = ''
+			}}>add todo</button>
+		</div>
+	)
+}
+
+// todo footer
+const TodoFooter = () => (
+	<div className="nav">
+		<FilterLinks filter={'ALL'} currentFilter={setVisibility}>ALL</FilterLinks>
+		{" "}
+		<FilterLinks filter={'ACTIVE'} currentFilter={setVisibility}>ACTIVE</FilterLinks>
+		{" "}
+		<FilterLinks filter={'COMPLETED'} currentFilter={setVisibility}>COMPLETED</FilterLinks>
+	</div>
+)
+
+class TodoApp extends React.Component {
 	render() {
 		// 在render的时候, 调用getVisibleTodos
 		const {todos, setVisibility} = this.props;
@@ -134,35 +192,12 @@ class TodoList extends React.Component {
 		)
 		return (
 			<div className="form">
-				<input type="text" ref={ node => this.input = node } />
-				<button onClick={() => {
-					store.dispatch(addTodo(this.input.value))
-					this.input.value= ''
-				}}>add todo</button>
-				<div className="nav">
-					<FilterLinks filter={'ALL'} currentFilter={setVisibility}>ALL</FilterLinks>
-					{" "}
-					<FilterLinks filter={'ACTIVE'} currentFilter={setVisibility}>ACTIVE</FilterLinks>
-					{" "}
-					<FilterLinks filter={'COMPLETED'} currentFilter={setVisibility}>COMPLETED</FilterLinks>
-				</div>
-				<ul>
-					{
-						visibleTodos.map(item =>
-							<li
-								key={item.id}
-								onClick={() => {
-										store.dispatch(toggleTodo(item.id))
-									}
-								}
-								style={
-									{
-										textDecoration: item.isCompleted ? 'line-through' : 'none'
-									}
-								}
-						>{item.txt}</li>)
+				<TodoIpt onAddClick={ (txt) => {
+						store.dispatch(addTodo(txt))
 					}
-				</ul>
+				}/>
+				<TodoList todos={visibleTodos} onTodoClick={id => store.dispatch(toggleTodo(id))} />
+				<TodoFooter />
 			</div>
 		)
 	}
@@ -179,6 +214,6 @@ class TodoList extends React.Component {
 // export default App
 
 render(
-	<TodoList {...store.getState()}></TodoList>,
+	<TodoApp {...store.getState()}></TodoApp>,
 	document.querySelector('#app')
 )
