@@ -29,6 +29,7 @@ h4 {
 
 .form-wrap {
 	width: 50%;
+	min-width: 300px;
 	padding: 8px;
 	display: flex;
 }
@@ -55,6 +56,12 @@ h4 {
 
 .todo-list {
 	list-style: none;
+	width: 100%;
+	max-height: 80%;
+	overflow: auto;
+	-webkit-mask: linear-gradient(to bottom,
+			rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .6) 5%, #efefef 0,
+			#efefef 95%, rgba(0, 0, 0, .6) 0%);
 }
 
 .todo-list li {
@@ -75,6 +82,7 @@ h4 {
 
 .todo-link {
 	width: 50%;
+	min-width: 300px;
 	padding: 6px;
 	font-family: "MicroSoft YaHei";
 	display: flex;
