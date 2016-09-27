@@ -221,12 +221,9 @@ class TodoApp extends React.Component {
 		)
 		return (
 			<div className="form">
-				<TodoIpt onAddClick={ (txt) => {
-						store.dispatch(addTodo(txt))
-					}
-				}/>
+				<TodoIpt onAddClick={ (txt) => {store.dispatch(addTodo(txt))} } />
 				<TodoList todos={visibleTodos} onTodoClick={id => store.dispatch(toggleTodo(id))} />
-				<TodoFooter setVisibility={setVisibility}/>
+				<TodoFooter setVisibility={setVisibility} />
 			</div>
 		)
 	}

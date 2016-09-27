@@ -1,0 +1,105 @@
+/*css*/
+
+*{
+	margin: 0;padding: 0;
+}
+
+html, body {
+	height: 100%;
+	overflow: auto;
+	background-color: #efefef;
+}
+#app {
+	height: 100%;
+}
+.app-wrap {
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	font-family: MONACO;
+}
+
+h4 {
+	font-weight: normal;
+	font-size: 26px;
+	text-shadow: 1px 1px 0px #ccc;
+}
+
+.form-wrap {
+	width: 50%;
+	padding: 8px;
+	display: flex;
+}
+
+.form-wrap input, button {
+	border: 1px solid #ccc;
+	padding: 8px;
+	outline: none;
+}
+.form-wrap input {
+	flex: 1;
+	border-right: none;
+	border-radius: 4px 0 0 4px;
+}
+
+.form-wrap button {
+	background-color: #69bbe8;
+	border-radius: 0 4px 4px 0;
+	color: #fff;
+}
+.form-wrap button:active {
+	background-color: hsla(0, 100%, 10%, .5);
+}
+
+.todo-list {
+	list-style: none;
+}
+
+.todo-list li {
+	padding: 6px;
+	transition: .3s ease-out;
+	cursor: default;
+	text-align: center;
+	animation: fadeInUp .5s both;
+}
+
+.todo-list li.active {
+	text-decoration: none;
+}
+.todo-list li.completed {
+	color: #ccc;
+	text-decoration: line-through;
+}
+
+.todo-link {
+	width: 50%;
+	padding: 6px;
+	font-family: "MicroSoft YaHei";
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.todo-link span {
+	color: #222;
+}
+.todo-link a {
+	transition: color .2s ease-in;
+	text-decoration: none;
+	color: #6b77d4;
+}
+.todo-link a:hover {
+	color: #7db8dc;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
