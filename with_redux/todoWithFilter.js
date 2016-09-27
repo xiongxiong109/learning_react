@@ -97,21 +97,48 @@ store.subscribe(() => {
 })
 
 // components
-const FilterLinks = ({ filter, children, currentFilter }) => {
-	if (currentFilter === filter) {
+/*
+	对Link组件进行改造, Link组件应该只负责对dom的渲染逻辑判断, 然后在外层添加一个Container组件把Link包裹起来
+*/
+const Link = ({ active, children, toggleFilterLink }) => {
+
+	if (active) {
 		return <span>{children}</span>
 	}
 	return (
 		<a href="javascript:void(0);" onClick={
 			e => {
 				e.preventDefault()
-				store.dispatch(setFilter(filter))
+				toggleFilterLink() // 只是做单纯的toggleFilter函数调用, 而具体的调用结果与处理则放在toggleFilterLink函数中
 			}
 		}>
 			{children}
 		</a>
 	)
 
+}
+
+// FilterLink
+class FilterLinks extends React.Component {
+	componentDidMount() {
+		this.unsubscribe = store.subscribe(() => {
+			this.forceUpdate()
+		})
+	}
+	componentWillUnMount() {
+		this.unsubscribe && this.unsubscribe()
+	}
+	render() {
+		const props = this.props // 拿属性上的filter值
+		let { setVisibility } = store.getState() // 拿store里的setVisibility的值
+		return (
+			<Link active={
+				props.filter === setVisibility
+			} toggleFilterLink={() => {
+				store.dispatch(setFilter(props.filter))
+			}}>{props.children}</Link>
+		)
+	}
 }
 
 // 将dom搬离出来, 然后可以把key加在组件上
@@ -162,7 +189,9 @@ const TodoIpt = ({onAddClick}) => {
 }
 
 // todo footer
-const TodoFooter = () => (
+const TodoFooter = ({
+	setVisibility
+}) => (
 	<div className="nav">
 		<FilterLinks filter={'ALL'} currentFilter={setVisibility}>ALL</FilterLinks>
 		{" "}
@@ -197,12 +226,12 @@ class TodoApp extends React.Component {
 					}
 				}/>
 				<TodoList todos={visibleTodos} onTodoClick={id => store.dispatch(toggleTodo(id))} />
-				<TodoFooter />
+				<TodoFooter setVisibility={setVisibility}/>
 			</div>
 		)
 	}
 }
-
+ 
 // class App extends React.Component {
 // 	render() {
 // 		return (
