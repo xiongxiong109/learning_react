@@ -23,6 +23,19 @@ const Items = (state = [], action) => {
 					return item
 			})
 			break;
+		// case 'FETCH':
+			// return [{id: 12, txt: 123456, isCompleted: false}]
+			// 这里异步了
+			// fetch('http://localhost:3000/lists', {
+			// 	method: 'post'
+			// })
+			// .then(data => data.json())
+			// .then(json => {
+			// 	return [...json, ...state]
+			// })
+			// .catch(e => {
+			// 	return state;
+			// })
 		default:
 			return state;
 	}

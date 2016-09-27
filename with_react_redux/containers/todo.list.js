@@ -1,6 +1,6 @@
 // list container
 import { connect } from 'react-redux'
-import { toggleItem } from '../action'
+import { addAction, toggleItem } from '../action'
 import { TodoList } from '../components'
 
 // 对todo list 按筛选条件进行筛选缓存
@@ -33,6 +33,9 @@ const mapListDispatchToProps = (dispatch) => {
 	return {
 		toggleState(id) {
 			dispatch(toggleItem(id))
+		},
+		addData(str) {
+			dispatch(addAction(str))
 		}
 	}
 }
