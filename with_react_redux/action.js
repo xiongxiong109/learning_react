@@ -1,10 +1,10 @@
-let unitId = 0
+import { v4 } from 'node-uuid' // 使用node-uuid的v4方法生成唯一的uid
 
 export const addAction = (str) => {
 	return {
 		type: 'ADD',
 		txt: str,
-		id: unitId++
+		id: v4()
 	}
 }
 

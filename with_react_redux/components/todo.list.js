@@ -24,18 +24,18 @@ class TodoList extends React.Component {
 
 	componentDidMount() {
 		const props = this.props;
-		fetch('http://localhost:3000/lists', {
-			method: 'post'
-		})
-		.then(data => data.json())
-		.then(jsonArr => {
-			jsonArr.map( remoteItem => {
-				props.addData(remoteItem.name)
-			})
-		})
-		.catch(e => {
-			console.log(e)
-		})
+		// fetch('http://localhost:3000/lists', {
+		// 	method: 'post'
+		// })
+		// .then(data => data.json())
+		// .then(jsonArr => {
+		// 	jsonArr.map( remoteItem => {
+		// 		props.addData(remoteItem.name)
+		// 	})
+		// })
+		// .catch(e => {
+		// 	console.log(e)
+		// })
 	}
 
 	render() {
