@@ -56,7 +56,8 @@ h4 {
 
 .todo-list {
 	list-style: none;
-	width: 100%;
+	width: 50%;
+	min-width: 300px;
 	max-height: 80%;
 	overflow: auto;
 	-webkit-mask: linear-gradient(to bottom,
