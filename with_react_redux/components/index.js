@@ -2,4 +2,6 @@
 import TodoIpt from './todo.ipt'
 import TodoList from './todo.list'
 import TodoFilter from './todo.filter'
-module.exports = { TodoIpt, TodoList, TodoFilter}
+import Root from './todo.root'
+
+module.exports = { TodoIpt, TodoList, TodoFilter, Root }
