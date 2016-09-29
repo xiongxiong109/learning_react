@@ -40,15 +40,15 @@ const Items = (state = [], action) => {
 			return state;
 	}
 }
-const Visiblity = (state = 'ALL', action) => {
-	if (action.type === 'SET_VISIBILITY') {
-		return action.filter
-	}
-	return state
-}
+// const Visiblity = (state = 'ALL', action) => {
+// 	if (action.type === 'SET_VISIBILITY') {
+// 		return action.filter
+// 	}
+// 	return state
+// }
 const reducers = combineReducers({
-	Items,
-	Visiblity
+	Items
+	// Visiblity // 使用react-router之后, 就可以通过url来控制视图的筛选变换了，所以就不需要Visibility reducer了
 })
 
 export default reducers

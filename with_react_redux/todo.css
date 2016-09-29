@@ -90,7 +90,7 @@ h4 {
 	align-items: center;
 	justify-content: space-around;
 }
-.todo-link span {
+.todo-link .active {
 	color: #222;
 }
 .todo-link a {
@@ -101,7 +101,9 @@ h4 {
 .todo-link a:hover {
 	color: #7db8dc;
 }
-
+.todo-link .active:hover {
+	color: inherit;
+}
 @keyframes fadeInUp {
 	from {
 		opacity: 0;

@@ -15,9 +15,9 @@ export const toggleItem = (id) => {
 	}
 }
 
-export const setFilter = (filter) => {
-	return {
-		type: 'SET_VISIBILITY',
-		filter
-	}
-}
+// export const setFilter = (filter) => {
+// 	return {
+// 		type: 'SET_VISIBILITY',
+// 		filter
+// 	}
+// }

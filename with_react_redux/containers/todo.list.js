@@ -5,16 +5,16 @@ import { TodoList } from '../components'
 
 // 对todo list 按筛选条件进行筛选缓存
 
-const getVisibleLists = (state) => {
+const getVisibleLists = (state, filter) => {
 
-	switch (state.Visiblity) {
-		case 'ALL':
+	switch (filter) {
+		case 'all':
 			return state.Items;
 			break;
-		case 'ACTIVE':
+		case 'active':
 			return state.Items.filter( item => !item.isCompleted )
 			break;
-		case 'COMPLETED':
+		case 'completed':
 			return state.Items.filter( item => item.isCompleted )
 			break;
 		default:
@@ -23,9 +23,10 @@ const getVisibleLists = (state) => {
 
 }
 
-const mapListStateToProps = (state) => {
+// 第二个参数传入自身的属性，来代替state中的属性
+const mapListStateToProps = (state, ownProps) => {
 	return {
-		lists: getVisibleLists(state)
+		lists: getVisibleLists(state, ownProps.filter)
 	}
 }
 
