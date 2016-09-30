@@ -4,26 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { addAction, toggleItem } from '../action'
 import { TodoList } from '../components'
-
-// 对todo list 按筛选条件进行筛选缓存
-
-const getVisibleLists = (state, filter) => {
-
-	switch (filter) {
-		case 'all':
-			return state.Items;
-			break;
-		case 'active':
-			return state.Items.filter( item => !item.isCompleted )
-			break;
-		case 'completed':
-			return state.Items.filter( item => item.isCompleted )
-			break;
-		default:
-			return state.Items;
-	}
-
-}
+import { getVisibleLists } from '../reducer'
 
 /*
 	第二个参数可以传入组件自身的属性值，通过获取组件自身的属性值来代替state中的属性
@@ -31,7 +12,7 @@ const getVisibleLists = (state, filter) => {
 */
 const mapListStateToProps = (state, {filter}) => {
 	return {
-		lists: getVisibleLists(state, filter)
+		lists: getVisibleLists(state.Items, filter)
 	}
 }
 
