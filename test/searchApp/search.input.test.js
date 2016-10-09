@@ -3,7 +3,7 @@ import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../../examples/searchApp/reducers'
-import SearchIptContainer from '../../examples/searchApp/containers/search.input'
+// import SearchIptContainer from '../../examples/searchApp/containers/search.input'
 import { expect } from 'chai'
 describe('test for searchIpt component', () => {
 
