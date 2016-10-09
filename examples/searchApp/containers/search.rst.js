@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
 
 	let filterArr = state.searchRst.map(str => {
 		// 读取state的searchValue值, 遍历searchRst数组, 将匹配到的关键字进行加粗显示
-		return str.replace(state.searchValue, '<strong>' + state.searchValue + '</strong>');
+		return str.replace(state.searchValue, `<strong>${state.searchValue}</strong>`);
 	});
 
 	return {
