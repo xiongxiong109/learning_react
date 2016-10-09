@@ -6,6 +6,9 @@ const searchRst = (state = [], action) => {
 		case 'UPDATE_SEARCH_RST':
 			return [...action.arr] 
 			break;
+		case 'CLEAR_SEARCH':
+			return [];
+			break;
 		default:
 			return state
 	}

@@ -7,7 +7,11 @@ class SearchIpt extends React.Component {
 	componentDidMount() {
 		this.refs.ipt.focus()
 	}
-
+	// 当传入的searchValue被置为空的时候, 清空输入框的值
+	componentWillReceiveProps(nextProp) {
+		// console.log(nextProp)
+		this.refs.ipt.value = nextProp.searchValue;
+	}
 	render() {
 		const props = this.props; 
 		return (

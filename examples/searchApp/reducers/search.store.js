@@ -1,6 +1,12 @@
 // 搜索记录列表
 const searchStore = (state = [], action) => {
-	return state
+	switch(action.type) {
+		case 'UPDATE_SEARCH_STORE':
+			return [action.str, ...state]
+			break;
+		default:
+			return state;
+	}
 }
 
 export default searchStore

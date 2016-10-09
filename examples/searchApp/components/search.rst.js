@@ -2,18 +2,20 @@
 import React, { PropTypes } from 'react'
 import { v4 } from 'node-uuid'
 
-const RstItem = ({item}) => (
-	<li><span>{item}</span></li>
+// 使用dangerouslySetInnerHTML来对html文本进行转义, 这个方法名很长, 意味着react本身并不推荐这样的使用方式 
+const RstItem = ({item, saveClick}) => (
+	<li onClick={(e) => saveClick(item)}><span dangerouslySetInnerHTML={{__html: item}}></span></li>
 )
 
-const RstList = ({resultArr}) => (
+const RstList = ({resultArr, saveClick}) => (
 	<ul className="search-list">
-		{resultArr.map(item => <RstItem item={item} key={v4()}/>)}
+		{resultArr.map(item => <RstItem item={item} key={v4()} saveClick={saveClick}/>)}
 	</ul>
 )
 
 RstItem.propTypes = {
-	item: PropTypes.string
+	item: PropTypes.string,
+	saveClick: PropTypes.func.isRequired
 }
 RstItem.defaultProps = {
 	item: ''

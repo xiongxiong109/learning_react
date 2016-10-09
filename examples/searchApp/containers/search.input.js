@@ -1,7 +1,7 @@
 // with react redux
 import { connect } from 'react-redux'
 import * as _ from 'lodash'
-import { updateSearchRst } from '../actions'
+import { updateSearchRst, updateSearchValue } from '../actions'
 import jsonp from '../../../service/jsonp'
 import SearchIpt from '../components/search.input'
 
@@ -12,10 +12,10 @@ const throttleSearch = _.throttle( (v, cb) => {
 	})
 }, 500)
 
-const mapStateToProps = () => {
-
+const mapStateToProps = (state) => {
+	// 将searchIpt的searchValue与react的prop绑定起来
 	return {
-		searchValue: ''
+		searchValue: state.searchValue
 	}
 
 }
@@ -28,6 +28,8 @@ const mapDispatchToProps = (dispatch) => {
 			throttleSearch(v, rstList => {
 				// console.log(v) // 搜索字段
 				// console.log(rstList) 
+				// 存入搜索字段
+				dispatch(updateSearchValue(v));
 				// 搜索结果字段
 				dispatch(updateSearchRst(rstList));
 			})
