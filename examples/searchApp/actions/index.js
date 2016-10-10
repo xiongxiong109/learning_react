@@ -32,3 +32,18 @@ export const clearCurrentSearch = () => {
 		type: 'CLEAR_SEARCH'
 	}
 }
+
+// 删除本条搜索记录
+export const removeItem = (id) => {
+	return {
+		type: 'REMOVE_STORE_ITEM',
+		id
+	}
+}
+
+// 清空搜索记录
+export const clearStore = () => {
+	return {
+		type: 'CLEAR_STORE'
+	}
+}

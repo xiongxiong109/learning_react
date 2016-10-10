@@ -4,17 +4,11 @@
 */
 
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducers from './reducers'
+import store from './store'
 import SearchIptContainer from './containers/search.input'
 import SearchRstContainer from './containers/search.rst'
-
-let store = createStore(reducers);
-
-store.subscribe(() => {
-	console.log(store.getState())
-});
+import SearchStoreContainer from './containers/search.store'
 
 class App extends React.Component {
 	render() {
@@ -23,13 +17,7 @@ class App extends React.Component {
 				<div className="search-app">
 					<SearchIptContainer />
 					<SearchRstContainer />
-					<h3>最近搜索记录</h3>
-					<ul className="search-store">
-						<li>
-							<span>最近搜索记录1</span>
-							<a href="javascript:void(0);">x</a>
-						</li>
-					</ul>
+					<SearchStoreContainer />
 				</div>
 			</Provider>
 		)

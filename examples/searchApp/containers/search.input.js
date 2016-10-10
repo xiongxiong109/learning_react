@@ -10,7 +10,7 @@ const throttleSearch = _.throttle( (v, cb) => {
 	jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', v, (rst) => {
 		cb && cb(rst.s);
 	})
-}, 500)
+}, 50)
 
 const mapStateToProps = (state) => {
 	// 将searchIpt的searchValue与react的prop绑定起来

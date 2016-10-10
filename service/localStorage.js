@@ -28,3 +28,8 @@ export const saveLocalState = (state, storeKey = STORE_KEY) => {
 		console.log(e)
 	}
 }
+
+export const configKeys = {
+	defaultKey: STORE_KEY, // 默认key
+	saveKey: 'SEARCH_STORE' // 本地存储搜索记录的key
+}

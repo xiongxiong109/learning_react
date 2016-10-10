@@ -4,7 +4,7 @@ import { v4 } from 'node-uuid'
 
 // 使用dangerouslySetInnerHTML来对html文本进行转义, 这个方法名很长, 意味着react本身并不推荐这样的使用方式 
 const RstItem = ({item, saveClick}) => (
-	<li onClick={(e) => saveClick(item)}><span dangerouslySetInnerHTML={{__html: item}}></span></li>
+	<li onClick={(e) => saveClick(item.str)}><span dangerouslySetInnerHTML={{__html: item.html}}></span></li>
 )
 
 const RstList = ({resultArr, saveClick}) => (
@@ -14,7 +14,7 @@ const RstList = ({resultArr, saveClick}) => (
 )
 
 RstItem.propTypes = {
-	item: PropTypes.string,
+	item: PropTypes.object,
 	saveClick: PropTypes.func.isRequired
 }
 RstItem.defaultProps = {
