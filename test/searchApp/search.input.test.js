@@ -1,20 +1,24 @@
-// 对输入组件进行测试
+// 对输入组件进行测试, 使用enzyme框架对react的虚拟dom进行测试
+
 import React from 'react'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducers from '../../examples/searchApp/reducers'
-// import SearchIptContainer from '../../examples/searchApp/containers/search.input'
+// import { createStore } from 'redux'
+// import reducers from '../../examples/searchApp/reducers'
+import { shallow } from 'enzyme'
+import SearchIpt from '../../examples/searchApp/components/search.input'
 import { expect } from 'chai'
-describe('test for searchIpt component', () => {
 
-	let store;
-	before(() => {
-		store = createStore(reducers);
-	})
+describe('test for <SearchIpt />', () => {
 
-	it('should be empty string value when nothing', () => {
-		let { searchValue } = store.getState()
-		expect(searchValue).to.be.empty
+	// let store;
+	// before(() => {
+	// 	store = createStore(reducers);
+	// })
+	
+	it('renders an input tag with the type "text"', () => {
+
+		const wrapper = shallow( <SearchIpt /> );
+		expect(wrapper.find('input').node.props.type).to.equal('text')
+
 	})
 
 });
