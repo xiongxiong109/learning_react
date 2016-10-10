@@ -18,7 +18,7 @@ const SearchStore = (props) => (
 					return (
 						<div>
 							<h3>最近搜索记录<a href="javascript:void(0);" onClick={props.clearSearchStore}>清空</a>(共{props.storeData.length}条)</h3>
-							<ul className="search-store">
+							<ul className="search-store-list">
 								{props.storeData.map((item, idx) =>
 									<SearchStoreItem {...props} key={v4()} idx={idx}>{item}</SearchStoreItem>
 								)}
