@@ -20,3 +20,6 @@ learning with react
 ```
 
 4. 把测试命令写入到`package.json`中的`npm test`去
+
+### redux dev tools 配置文档
+[https://github.com/gaearon/redux-devtools/blob/master/docs/Walkthrough.md](配置文档)

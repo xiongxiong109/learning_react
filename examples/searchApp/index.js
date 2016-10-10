@@ -6,18 +6,18 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from './store'
-import SearchIptContainer from './containers/search.input'
-import SearchRstContainer from './containers/search.rst'
-import SearchStoreContainer from './containers/search.store'
+import Monitor from '../../dev_tools/chart.monitor'
+import { SearchApp } from './App'
+
+require('./style.css')
 
 class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<div className="search-app">
-					<SearchIptContainer />
-					<SearchRstContainer />
-					<SearchStoreContainer />
+				<div>
+					<SearchApp />
+					<div className="dev-box"><Monitor /></div>
 				</div>
 			</Provider>
 		)
