@@ -1,10 +1,13 @@
 // 搜索结果
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import { v4 } from 'node-uuid'
 
 // 使用dangerouslySetInnerHTML来对html文本进行转义, 这个方法名很长, 意味着react本身并不推荐这样的使用方式 
 const RstItem = ({item, saveClick}) => (
-	<li onClick={(e) => saveClick(item.str)}><span dangerouslySetInnerHTML={{__html: item.html}}></span></li>
+	<li onClick={(e) => saveClick(item.str)}>
+		<Link to={`/search/${decodeURI(item.str)}`} dangerouslySetInnerHTML={{__html: item.html}}></Link>
+	</li>
 )
 
 const RstList = ({resultArr, saveClick}) => (

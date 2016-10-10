@@ -51,6 +51,11 @@ body {
 .search-list li:last-of-type {
 	border-radius: 0px 0px 4px 4px;
 }
+.search-list li a {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
 .search-list li, .search-ipt-wrap input{
 	width: 80%;
 	display: block;

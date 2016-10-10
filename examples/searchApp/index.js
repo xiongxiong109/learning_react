@@ -5,6 +5,7 @@
 
 import React from 'react'
 import { Provider } from 'react-redux'
+import { Router, Route, browserHistory } from 'react-router' 
 import store from './store'
 import Monitor from '../../dev_tools/chart.monitor'
 import { SearchApp } from './App'
@@ -16,7 +17,9 @@ class App extends React.Component {
 		return (
 			<Provider store={store}>
 				<div>
-					<SearchApp />
+					<Router history={browserHistory}>
+						<Route path="/" component={SearchApp} />
+					</Router>
 					<div className="dev-box"><Monitor /></div>
 				</div>
 			</Provider>
