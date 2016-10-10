@@ -75,17 +75,16 @@ body {
 	font-weight: normal;
 }
 .search-store-list {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
 	list-style: none;
 	font-size: 14px;
 	line-height: 1.2;
+	overflow: hidden;
 }
 .search-store-list li {
 	padding: 6px;
 	margin: 3px;
 	border: 1px solid #ccc;
+	float: left;
 	border-radius: calc(1.2 * 14px);
 	cursor: pointer;
 	display: -webkit-box;
