@@ -3,9 +3,9 @@ import React from 'react'
 import * as _ from 'lodash'
 import { v4 } from 'node-uuid'
 
-const SearchStoreItem = ({children, removeStoreItem, idx}) => (
+const SearchStoreItem = ({children, removeStoreItem, researchItem, idx, str}) => (
 	<li>
-		<span>{children}</span>
+		<span onClick={(e) => researchItem(str)}>{children}</span>
 		<a href="javascript:void(0);" onClick={(e) => removeStoreItem(idx)}>x</a>
 	</li>
 )
@@ -20,7 +20,7 @@ const SearchStore = (props) => (
 							<h3>最近搜索记录<a href="javascript:void(0);" onClick={props.clearSearchStore}>清空</a>(共{props.storeData.length}条)</h3>
 							<ul className="search-store-list">
 								{props.storeData.map((item, idx) =>
-									<SearchStoreItem {...props} key={v4()} idx={idx}>{item}</SearchStoreItem>
+									<SearchStoreItem {...props} key={v4()} idx={idx} str={item}>{item}</SearchStoreItem>
 								)}
 							</ul>
 						</div>

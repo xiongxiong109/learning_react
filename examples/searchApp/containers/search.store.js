@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { removeItem, clearStore } from '../actions'
+import { removeItem, clearStore, updateSearchValue, updateSearchRst } from '../actions'
 import { saveLocalState, fetchLocalState, configKeys } from '../../../service/localStorage'
 import SearchStore from '../components/search.store'
 
@@ -29,6 +29,10 @@ const mapDispatchToProps = (dispatch) => {
 			saveLocalState({searchStore: []}, saveKey)
 			// 清空视图状态
 			dispatch(clearStore())
+		},
+		// 重新搜索历史字段
+		researchItem(searchStr) {
+			dispatch(updateSearchValue(searchStr))
 		}
 	}
 }
