@@ -21,7 +21,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader'
+				loader: 'style-loader!css-loader?modules' // 添加了modules参数, 可以打开css modules功能
 			}
 		]
 	}

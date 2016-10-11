@@ -10,7 +10,8 @@ import store from './store'
 import Monitor from '../../dev_tools/chart.monitor'
 import { SearchApp } from './App'
 
-require('./style.css')
+// require('./style.css')
+import style from './style.css' // 打开css 模块化写法
 
 class App extends React.Component {
 	render() {
@@ -20,7 +21,7 @@ class App extends React.Component {
 					<Router history={browserHistory}>
 						<Route path="/" component={SearchApp} />
 					</Router>
-					<div className="dev-box"><Monitor /></div>
+					<div className='dev-box'><Monitor /></div>
 				</div>
 			</Provider>
 		)

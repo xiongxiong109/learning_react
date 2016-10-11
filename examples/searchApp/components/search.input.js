@@ -1,6 +1,7 @@
 // 搜索输入框组件
 
 import React, { PropTypes } from 'react'
+import style from '../style.css'
 
 class SearchIpt extends React.Component {
 
@@ -17,7 +18,7 @@ class SearchIpt extends React.Component {
 	render() {
 		const props = this.props; 
 		return (
-			<div className="search-ipt-wrap">
+			<div className={style["search-ipt-wrap"]}>
 				<input type="text" defaultValue={props.searchValue} ref="ipt" onChange={(e) => props.updateSearch(e, this.refs.ipt.value)} />
 			</div>
 		)

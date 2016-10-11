@@ -3,6 +3,8 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { v4 } from 'node-uuid'
 
+import style from '../style.css'
+
 // 使用dangerouslySetInnerHTML来对html文本进行转义, 这个方法名很长, 意味着react本身并不推荐这样的使用方式 
 const RstItem = ({item, saveClick}) => (
 	<li onClick={(e) => saveClick(item.str)}>
@@ -11,7 +13,7 @@ const RstItem = ({item, saveClick}) => (
 )
 
 const RstList = ({resultArr, saveClick}) => (
-	<ul className="search-list">
+	<ul className={style["search-list"]}>
 		{resultArr.map(item => <RstItem item={item} key={v4()} saveClick={saveClick}/>)}
 	</ul>
 )

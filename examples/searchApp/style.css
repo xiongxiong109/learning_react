@@ -3,8 +3,11 @@ body {
 	font-family: "Microsoft YaHei"
 }
 
+.clear-list { /*清空 ul 的list-style*/
+	list-style: none;
+}
 /*dev tools*/
-.dev-box {
+:global(.dev-box) { /*全局样式, 不会被编译成哈希字符串*/
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -34,8 +37,8 @@ body {
 
 /* search list */
 .search-list {
+	composes: clear-list; /*使用composes语法, 可以让一个组合继承另一个组合的样式, 但是只能是局部作用域*/
 	width: 50%;
-	list-style: none;
 }
 .search-list li {
 	border: 1px solid #ccc;
@@ -80,7 +83,7 @@ body {
 	font-weight: normal;
 }
 .search-store-list {
-	list-style: none;
+	composes: clear-list;
 	font-size: 14px;
 	line-height: 1.2;
 	overflow: hidden;
