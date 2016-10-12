@@ -1,20 +1,15 @@
 import React from 'react'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, hashHistory, Link } from 'react-router'
+// import HelloComponent from './component/hello'
+import App from './router/'
+import Main from './router/main'
 
-let github = 'https://github.com/reactjs/react-router-tutorial/tree/master/lessons'
-let blog = 'http://www.ruanyifeng.com/blog/2016/05/react_router.html'
-
-const HelloComponent = () => (
-	<div>
-		<p>Hello <a href={github}>React Router</a></p>
-		<p><a href={blog}>ruan's blog</a></p>
-	</div>
-)
-
-const App = () => (
-	<Router history={browserHistory}>
-		<Route path="/" component={HelloComponent} />
+const RouterApp = () => (
+	<Router history={hashHistory}>
+		<Route path="/" component={App} />
+			<Route path="/:path" component={Main}/>
+		<Route />
 	</Router>
 )
 
-export default App
+export default RouterApp

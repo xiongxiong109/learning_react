@@ -1,0 +1,10 @@
+.navbarWrap {
+	border-bottom: 1px solid #ccc;
+}
+.navbarWrap a {
+	padding: 8px;
+}
+.linkActive {
+	text-decoration: none;
+	color: #332;
+}
