@@ -1,6 +1,9 @@
 // 创建异步的action creator函数
-
+import { polyfill } from 'es6-promise'
+import 'isomorphic-fetch' // fetch api 做浏览器兼容
 import { fetching, fatchFailed, fatchSuccess } from './action'
+
+polyfill() // promise语法polyfill
 
 let url = 'http://localhost:3000/apis/orderDetail'
 
@@ -26,7 +29,7 @@ export const fetchPost = () => {
 		.catch(err => {
 			dispatch(fatchFailed(err))
 		})
-		
+
 	}
 
 }
