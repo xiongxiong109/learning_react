@@ -8,6 +8,8 @@ module.exports = {
 		inline: true, // 添加了inline true后就可以自动刷新了, 这里的自动刷新并不是利用了livereload, 而是用了iframe嵌入,并刷新iframe的方式
 		port: 3333,
 		static: './'
+		// 在npm start 中指定 webpack-dev-server --content-base . --history-api-fallback
+		// 就可以使用 browserHistory 并且刷新浏览器页面保持不变了
 	},
 	module: {
 		loaders: [

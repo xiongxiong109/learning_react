@@ -28,7 +28,7 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --color --progress",
+    "start": "webpack-dev-server --content-base . --history-api-fallback --color --progress",
     "test": "cd ./test/ && mocha --reporter tap --recursive --color --compilers js:babel-core/register ./"
   },
   "author": "",
