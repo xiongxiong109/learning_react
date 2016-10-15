@@ -16,7 +16,7 @@ const mapBtnDispatchToProps = (dispatch) => {
 			// dispatch(fetchPost()).then(() => {
 			// 	console.log(x)
 			// })
-			dispatch(fetchPost())
+			dispatch(fetchPost('http://localhost:3000/apis/orderDetail'))
 		}
 	}
 }
