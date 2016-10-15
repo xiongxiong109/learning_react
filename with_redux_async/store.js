@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+// import thunk from 'redux-thunk' // 使用redux-thunk + action creator实现
+import promiseMiddleware from 'redux-promise' // 使用promise中间件实现
 import { reducers } from './reducer'
 
 const initial_store = {
@@ -10,7 +11,7 @@ const initial_store = {
 let store = createStore(
 	reducers, // reducers
 	initial_store, // default state
-	applyMiddleware(thunk) // middleware
+	applyMiddleware(promiseMiddleware) // middleware
 )
 
 store.subscribe(() => {

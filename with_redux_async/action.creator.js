@@ -1,5 +1,6 @@
 // 创建异步的action creator函数
 import { polyfill } from 'es6-promise'
+import { createAction } from 'redux-actions'
 import 'isomorphic-fetch' // fetch api 做浏览器兼容
 import { fetching, fatchFailed, fatchSuccess } from './action'
 
@@ -29,5 +30,16 @@ export const fetchPost = (url) => {
 		})
 
 	}
+
+}
+
+export const promiseFetchPost = (dispatch, url) => {
+
+	return new Promise((resolve, reject) => {
+		fetch(url)
+		.then(res => res.json())
+		.then(json => {dispatch(fatchSuccess(json))})
+		.catch(err => {dispatch(fatchFailed(err))})
+	});
 
 }
