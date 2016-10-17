@@ -17,7 +17,8 @@ const NavBar = ({links}) => (
 NavBar.defaultProps = {
 	links: [
 		{url: '/blog', nm: '博客'},
-		{url: '/about', nm: '关于我们'}
+		{url: '/about', nm: '关于我们'},
+		{url: '/login', nm: '登录'}
 	]
 }
 
