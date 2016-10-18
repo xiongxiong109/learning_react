@@ -2,13 +2,17 @@
 import React from 'react'
 import { Link, IndexLink } from 'react-router'
 import {v1} from 'node-uuid'
-import style from './style.css'
+// import style from './style.css'
 // 导航组件
 const NavBar = ({links}) => (
-	<div className={style.navbarWrap}>
-		<IndexLink to={''} activeClassName={style.linkActive}>首页</IndexLink>
+	<div>
+		<IndexLink to={''} activeStyle={{
+			'textDecoration': 'none'
+		}}>首页</IndexLink>
 		{links.map(link =>
-			<Link key={v1()} to={link.url} activeClassName={style.linkActive}>{link.nm}</Link>	
+			<Link key={v1()} to={link.url} activeStyle={{
+				'textDecoration': 'none'
+			}}>{link.nm}</Link>	
 		)}
 	</div>
 )
