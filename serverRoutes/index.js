@@ -35,6 +35,7 @@ function renderPage(appHtml) {
 		</head>
 		<body>
 			<div id="app">${appHtml}</div>
+			<script type="text/javascript" src="/vendor.min.js"></script>
 			<script type="text/javascript" src="/index.bundle.js"></script>
 		</body>
 		</html>

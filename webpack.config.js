@@ -2,10 +2,14 @@ var webpack = require('webpack');
 // 使用definePlugin来进行生产环境打包, 安装if-env module来指定npm start的环境判定
 // 在express中使用compression中间件来进行gzip压缩
 module.exports = {
-	entry: './main.js',
+	entry: {
+		'main': './main.js',
+		'vendor': ['react', 'react-router', 'react-dom']
+	},
 	output: {
 		path: 'build',
 		filename: 'index.bundle.js',
+		chunkFileName: 'vendor.min.js',
 		publicPath: 'build' // 添加publicPath, 进行生产发布打包
 	},
 	devServer: {
@@ -43,10 +47,13 @@ module.exports = {
 	    // })
 			new webpack.DefinePlugin({ // 指定生产环境和开发环境
 			    'process.env.NODE_ENV': JSON.stringify('production')
-			})
+			}),
+			// 将vendor文件单独打包
+			new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
 	  ] : [
 	  	new webpack.DefinePlugin({
 	  		'process.env.NODE_ENV': JSON.stringify('development')
-	  	})
+	  	}),
+	  	new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
 	  ]
 }

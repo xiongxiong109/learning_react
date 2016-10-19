@@ -125,7 +125,7 @@
 	});
 
 	function renderPage(appHtml) {
-		return '\n\t\t<!doctype html>\n\t\t<html lang="en">\n\t\t<head>\n\t\t\t<meta charset="UTF-8">\n\t\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0 max-scale=1.0">\n\t\t\t<title>Hello React</title>\n\t\t\t<style type="text/css">\n\t\t\t\t.color-box {\n\t\t\t\t\twidth: 80px;\n\t\t\t\t\theight: 80px;\n\t\t\t\t}\n\t\t\t</style>\n\t\t</head>\n\t\t<body>\n\t\t\t<div id="app">' + appHtml + '</div>\n\t\t\t<script type="text/javascript" src="/index.bundle.js"></script>\n\t\t</body>\n\t\t</html>\n\t';
+		return '\n\t\t<!doctype html>\n\t\t<html lang="en">\n\t\t<head>\n\t\t\t<meta charset="UTF-8">\n\t\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0 max-scale=1.0">\n\t\t\t<title>Hello React</title>\n\t\t\t<style type="text/css">\n\t\t\t\t.color-box {\n\t\t\t\t\twidth: 80px;\n\t\t\t\t\theight: 80px;\n\t\t\t\t}\n\t\t\t</style>\n\t\t</head>\n\t\t<body>\n\t\t\t<div id="app">' + appHtml + '</div>\n\t\t\t<script type="text/javascript" src="/vendor.min.js"></script>\n\t\t\t<script type="text/javascript" src="/index.bundle.js"></script>\n\t\t</body>\n\t\t</html>\n\t';
 	}
 
 	module.exports = serverRoutes;
@@ -199,16 +199,42 @@
 		);
 	};
 
-	var routes = _react2.default.createElement(
-		_reactRouter.Route,
-		{ path: '/', component: _router2.default },
-		_react2.default.createElement(_reactRouter.IndexRoute, { component: Home }),
-		_react2.default.createElement(
-			_reactRouter.Route,
-			{ path: '/:path', component: _main2.default },
-			_react2.default.createElement(_reactRouter.Route, { path: '/:path/:detail', component: _detail2.default })
-		)
-	);
+	// jsx写法
+	// const routes = (
+	// 	<Route path="/" component={App}>
+	// 		<IndexRoute component={Home} />
+	// 		<Route path="/:path" component={Main}>
+	// 			<Route path="/:path/:detail" component={Detail} />
+	// 		</Route>
+	// 	</Route>
+	// )
+
+	// obj写法, 使用obj的写法，可以方便地挂载router hook, 还可以有效地控制路由组件的按需加载
+
+	var routes = {
+		path: '/',
+		component: _router2.default,
+		indexRoute: { component: Home },
+		childRoutes: [{
+			path: '/:path',
+			component: _main2.default,
+			childRoutes: [{
+				path: '/:path/:detail',
+				component: _detail2.default,
+				// hook
+				onEnter: function onEnter(router, replace) {
+					console.log(router.params);
+					console.log(router);
+					// console.log(replace); // 这是一个替换路由的函数
+				},
+				onLeave: function onLeave(_ref) {
+					var params = _ref.params;
+
+					console.log(params);
+				}
+			}]
+		}]
+	};
 
 	exports.default = routes;
 
@@ -567,7 +593,13 @@
 				// 通过browserHistory的push方法进行url跳转
 				// browserHistory.push('/blog/detail');
 				// 通过设置router context上下文进行跳转
-				this.context.router.push('/blog/detail');
+				// this.context.router.push('/blog/detail');
+				this.context.router.push({
+					'pathname': '/blog/detail',
+					'query': {
+						username: this.refs.ipt.value
+					}
+				});
 			}
 		}, {
 			key: 'render',

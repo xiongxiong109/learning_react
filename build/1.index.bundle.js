@@ -1,0 +1,1 @@
+webpackJsonp([1],{123:function(e,t,n){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}var r=n(5),l=u(r),o=function(){return l["default"].createElement("div",null,"Blogs")};e.exports=o}});
