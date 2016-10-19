@@ -37,9 +37,10 @@ const routes = {
 					path: '/:path/:detail',
 					component: Detail,
 					// hook
-					onEnter: ({params}, replace) => {
-						console.log(params);
-						console.log(replace); // 这是一个替换路由的函数
+					onEnter: (router, replace) => {
+						console.log(router.params);
+						console.log(router);
+						// console.log(replace); // 这是一个替换路由的函数
 					},
 					onLeave: ({params}) => {
 						console.log(params)

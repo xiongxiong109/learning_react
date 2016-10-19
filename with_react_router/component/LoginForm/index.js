@@ -17,7 +17,13 @@ class LoginForm extends React.Component {
 		// 通过browserHistory的push方法进行url跳转
 		// browserHistory.push('/blog/detail');
 		// 通过设置router context上下文进行跳转
-		this.context.router.push('/blog/detail');
+		// this.context.router.push('/blog/detail');
+		this.context.router.push({
+			'pathname': '/blog/detail',
+			'query': {
+				username: this.refs.ipt.value
+			}
+		})
 	}
 
 	render() {
