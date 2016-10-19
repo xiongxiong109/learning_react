@@ -7,7 +7,7 @@ import DetailLink from './component/NavBar/detail.link'
 
 const Home = () => (
 	<div>
-		<DetailLink>首页的详情</DetailLink>
+		<DetailLink>首页之详情</DetailLink>
 		<h3>Home Index</h3>
 	</div>
 )

@@ -11,7 +11,7 @@ module.exports = {
 	devServer: {
 		inline: true, // 添加了inline true后就可以自动刷新了, 这里的自动刷新并不是利用了livereload, 而是用了iframe嵌入,并刷新iframe的方式
 		port: 3333,
-		static: './build'
+		static: './'
 		// 在npm start 中指定 webpack-dev-server --content-base . --history-api-fallback
 		// --content-base .指定的目录为根目录
 		// 可以给--contente-base 指定目录为 public目录

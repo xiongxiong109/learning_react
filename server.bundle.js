@@ -46,30 +46,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _server = __webpack_require__(2);
-
-	var _reactRouter = __webpack_require__(3);
-
-	var _routes = __webpack_require__(4);
-
-	var _routes2 = _interopRequireDefault(_routes);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// and these to match the url to routes and then render
 	// 通过webpack对server.js进行打包, 使得服务端也可以使用es6的各种强大语法
 
 	// import some new stuff
-	var express = __webpack_require__(13);
-	// we'll use this to render our app to an html string
-
-	var path = __webpack_require__(14);
-	var compression = __webpack_require__(15);
-
+	var express = __webpack_require__(1);
+	var path = __webpack_require__(2);
+	var compression = __webpack_require__(3);
+	var serverRoutes = __webpack_require__(4);
 	var app = express();
 
 	// gzip 压缩
@@ -77,11 +60,63 @@
 	// 指定静态文件目录
 	app.use(express.static(path.join(__dirname, 'build')));
 
-	app.get('*', function (req, res) {
+	app.use('/', serverRoutes);
 
+	var PORT = process.env.PORT || 8088;
+
+	// 监听端口
+	app.listen(PORT, function () {
+	  console.log('Production Express server running at localhost:' + PORT);
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, ""))
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = require("express");
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = require("path");
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("compression");
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _server = __webpack_require__(6);
+
+	var _reactRouter = __webpack_require__(7);
+
+	var _routes = __webpack_require__(8);
+
+	var _routes2 = _interopRequireDefault(_routes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// and these to match the url to routes and then render
+	var express = __webpack_require__(1);
+	// we'll use this to render our app to an html string
+
+	var serverRoutes = express.Router();
+
+	serverRoutes.get('*', function (req, res) {
 		// router在浏览器端和服务端实现共享, 浏览器端实现自己的逻辑,
 		// 服务端则同样可以享用react的路由, 来同步req.url和react的props进行数据处理
-		console.log(req.url);
 		(0, _reactRouter.match)({ routes: _routes2.default, location: req.url }, function (err, redirect, props) {
 			var appHtml = (0, _server.renderToString)(_react2.default.createElement(_reactRouter.RouterContext, props));
 			console.log(req.url);
@@ -89,38 +124,32 @@
 		});
 	});
 
-	var PORT = process.env.PORT || 8080;
-
-	// 监听端口
-	app.listen(PORT, function () {
-		console.log('Production Express server running at localhost:' + PORT);
-	});
-
 	function renderPage(appHtml) {
 		return '\n\t\t<!doctype html>\n\t\t<html lang="en">\n\t\t<head>\n\t\t\t<meta charset="UTF-8">\n\t\t\t<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0 max-scale=1.0">\n\t\t\t<title>Hello React</title>\n\t\t\t<style type="text/css">\n\t\t\t\t.color-box {\n\t\t\t\t\twidth: 80px;\n\t\t\t\t\theight: 80px;\n\t\t\t\t}\n\t\t\t</style>\n\t\t</head>\n\t\t<body>\n\t\t\t<div id="app">' + appHtml + '</div>\n\t\t\t<script type="text/javascript" src="/index.bundle.js"></script>\n\t\t</body>\n\t\t</html>\n\t';
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, ""))
+
+	module.exports = serverRoutes;
 
 /***/ },
-/* 1 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-/* 2 */
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-dom/server");
 
 /***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-router");
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -129,25 +158,25 @@
 		value: true
 	});
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(7);
 
-	var _router = __webpack_require__(5);
+	var _router = __webpack_require__(9);
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _main = __webpack_require__(8);
+	var _main = __webpack_require__(12);
 
 	var _main2 = _interopRequireDefault(_main);
 
-	var _detail = __webpack_require__(11);
+	var _detail = __webpack_require__(15);
 
 	var _detail2 = _interopRequireDefault(_detail);
 
-	var _detail3 = __webpack_require__(10);
+	var _detail3 = __webpack_require__(14);
 
 	var _detail4 = _interopRequireDefault(_detail3);
 
@@ -160,7 +189,7 @@
 			_react2.default.createElement(
 				_detail4.default,
 				null,
-				'首页的详情'
+				'首页之详情'
 			),
 			_react2.default.createElement(
 				'h3',
@@ -184,7 +213,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 5 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -195,11 +224,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavBar = __webpack_require__(6);
+	var _NavBar = __webpack_require__(10);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
@@ -263,7 +292,7 @@
 	exports.default = App;
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -272,13 +301,13 @@
 		value: true
 	});
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(7);
 
-	var _nodeUuid = __webpack_require__(7);
+	var _nodeUuid = __webpack_require__(11);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -317,13 +346,13 @@
 	exports.default = NavBar;
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = require("node-uuid");
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -332,23 +361,23 @@
 		value: true
 	});
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _nodeUuid = __webpack_require__(7);
+	var _nodeUuid = __webpack_require__(11);
 
-	var _reactRouter = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(7);
 
-	var _lodash = __webpack_require__(9);
+	var _lodash = __webpack_require__(13);
 
 	var _ = _interopRequireWildcard(_lodash);
 
-	var _NavBar = __webpack_require__(6);
+	var _NavBar = __webpack_require__(10);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
-	var _detail = __webpack_require__(10);
+	var _detail = __webpack_require__(14);
 
 	var _detail2 = _interopRequireDefault(_detail);
 
@@ -397,13 +426,13 @@
 	exports.default = Main;
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash");
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -412,11 +441,11 @@
 		value: true
 	});
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(7);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -443,7 +472,7 @@
 	exports.default = DetailLink;
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -452,15 +481,15 @@
 		value: true
 	});
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavBar = __webpack_require__(6);
+	var _NavBar = __webpack_require__(10);
 
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 
-	var _LoginForm = __webpack_require__(12);
+	var _LoginForm = __webpack_require__(16);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
@@ -490,7 +519,7 @@
 	exports.default = Detail;
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -501,11 +530,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(7);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -570,24 +599,6 @@
 	};
 
 	exports.default = LoginForm;
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	module.exports = require("express");
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = require("path");
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = require("compression");
 
 /***/ }
 /******/ ]);
