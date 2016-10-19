@@ -12,13 +12,42 @@ const Home = () => (
 	</div>
 )
 
-const routes = (
-	<Route path="/" component={App}>
-		<IndexRoute component={Home} />
-		<Route path="/:path" component={Main}>
-			<Route path="/:path/:detail" component={Detail} />
-		</Route>
-	</Route>
-)
+// jsx写法
+// const routes = (
+// 	<Route path="/" component={App}>
+// 		<IndexRoute component={Home} />
+// 		<Route path="/:path" component={Main}>
+// 			<Route path="/:path/:detail" component={Detail} />
+// 		</Route>
+// 	</Route>
+// )
+
+// obj写法, 使用obj的写法，可以方便地挂载router hook, 还可以有效地控制路由组件的按需加载
+
+const routes = {
+	path: '/',
+	component: App,
+	indexRoute: {component: Home },
+	childRoutes: [
+		{ 
+			path: '/:path',
+			component: Main,
+			childRoutes: [
+				{
+					path: '/:path/:detail',
+					component: Detail,
+					// hook
+					onEnter: ({params}, replace) => {
+						console.log(params);
+						console.log(replace); // 这是一个替换路由的函数
+					},
+					onLeave: ({params}) => {
+						console.log(params)
+					}
+				}
+			]
+		},
+	]
+}
 
 export default routes
