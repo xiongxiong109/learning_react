@@ -1,10 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router'
+import Nav from './Nav'
 
 const App = ({children}) => (
 	<div className="app">
-		<h3>App</h3>
-		<Link to="/blog" >to blog</Link>
+		<Nav />
 		{children}
 	</div>
 )

@@ -2,8 +2,9 @@ import { browserHistory, Router } from 'react-router'
 
 const rootRouter = {
 	path: '/',
-	indexRoute: {component: require('./component/App')}, // 这样的写法已经实现了路由的按需加载
+	component: require('./component/App'), // 这里不使用indexRoute, 直接在nav中使用IndexLink 指定to="/"
 	childRoutes: [
+		require('./routes/Login'),
 		require('./routes/Blog')
 	]
 }
