@@ -1,12 +1,14 @@
 // 用户登录
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { doLogin } from '../../../auth'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
+
 class LoginPanel extends React.Component {
 
 	componentDidMount() {
 		this.refs.uname.focus();
 	}
+
 	loginSubmit(e) {
 		console.log(this.props);
 		e.preventDefault();
@@ -14,9 +16,9 @@ class LoginPanel extends React.Component {
 		let from = this.props.location.query.from;
 		console.log(doLogin(uname.value, upwd.value));
 		if (from) {
-			browserHistory.go(`/${from}`);
+			this.context.router.push(`/${from}`);
 		} else {
-			browserHistory.goBack();
+			this.context.router.goBack();
 		}
 		// console.log(uname.value);
 		// console.log(upwd.value);
@@ -30,6 +32,11 @@ class LoginPanel extends React.Component {
 			</form>
 		)
 	}
+}
+
+// 指定上下文环境， 将组件包裹在router中
+LoginPanel.contextTypes = {
+	router: PropTypes.object
 }
 
 module.exports = LoginPanel
