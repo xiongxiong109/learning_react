@@ -1,7 +1,7 @@
 // 导航菜单
 import React from 'react'
 import { Link, IndexLink } from 'react-router'
-import styles from './nav.css'
+import styles from './nav.less'
 console.log(styles)
 const Nav = () => (
 	<div className={styles.navHeader}>

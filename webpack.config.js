@@ -39,10 +39,14 @@ module.exports = {
 			{
 				test: /\.css$/,
 				loader: 'style-loader!css-loader?modules!postcss-loader' // 添加了modules参数, 可以打开css modules功能
+			},
+			{ // 增强less文件, 使用autoprefixer
+				test: /\.less$/,
+				loader: 'style!css?modules!less'
 			}
 		]
 	},
-	postcss: function() {
+	postcss: function() { // 使用postcss挂载autoprefixer和precss插件
 		return [autoprefixer, precss]
 	},
 	plugins: process.env.NODE_ENV === 'production' ? [ // 生产环境下进行一系列的优化, 开发环境下不变
