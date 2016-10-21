@@ -1,0 +1,22 @@
+/*nav.css*/
+.flex-alignCenter {
+	display: flex;
+	align-items: center;
+}
+.navHeader {
+	composes: flex-alignCenter;
+	/*background-color: #fff;*/
+	height: 40px;
+	box-shadow: 0px 1px 1px #ccc;
+	justify-content: space-around;
+	background:#fff linear-gradient(left, #ddd 50%, #cd0000 0, transparent);
+	transition: 3s ease;
+	/*mask: linear-gradient(left, #ccc 30%, #ddd);*/
+}
+.navHeader a {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+}

@@ -1,4 +1,8 @@
 var webpack = require('webpack');
+
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+
 // 使用definePlugin来进行生产环境打包, 安装if-env module来指定npm start的环境判定
 // 在express中使用compression中间件来进行gzip压缩
 module.exports = {
@@ -34,26 +38,29 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader?modules' // 添加了modules参数, 可以打开css modules功能
+				loader: 'style-loader!css-loader?modules!postcss-loader' // 添加了modules参数, 可以打开css modules功能
 			}
 		]
 	},
-		plugins: process.env.NODE_ENV === 'production' ? [ // 生产环境下进行一系列的优化, 开发环境下不变
-	    new webpack.optimize.DedupePlugin(),
-	    new webpack.optimize.OccurrenceOrderPlugin(),
-	    new webpack.optimize.UglifyJsPlugin(),
-	    // new webpack.DefinePlugin({ // 指定生产环境和开发环境
-	    //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-	    // })
-			new webpack.DefinePlugin({ // 指定生产环境和开发环境
-			    'process.env.NODE_ENV': JSON.stringify('production')
-			}),
-			// 将vendor文件单独打包
-			new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
-	  ] : [
-	  	new webpack.DefinePlugin({
-	  		'process.env.NODE_ENV': JSON.stringify('development')
-	  	}),
-	  	new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
-	  ]
+	postcss: function() {
+		return [autoprefixer, precss]
+	},
+	plugins: process.env.NODE_ENV === 'production' ? [ // 生产环境下进行一系列的优化, 开发环境下不变
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.DefinePlugin({ // 指定生产环境和开发环境
+    //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    // })
+		new webpack.DefinePlugin({ // 指定生产环境和开发环境
+		    'process.env.NODE_ENV': JSON.stringify('production')
+		}),
+		// 将vendor文件单独打包
+		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
+  ] : [
+  	new webpack.DefinePlugin({
+  		'process.env.NODE_ENV': JSON.stringify('development')
+  	}),
+  	new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.min.js')
+  ]
 }

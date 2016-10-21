@@ -1,0 +1,14 @@
+* {margin: 0;padding: 0;}
+
+:global(a.activeLink) {
+	color: #000;
+	text-decoration: none;
+}
+:global(.flex-alignCenter) {
+	display: flex;
+	align-items: center;
+}
+a {
+	text-decoration: none;
+	color: #cd0000;
+}

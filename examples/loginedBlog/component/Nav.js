@@ -1,18 +1,13 @@
 // 导航菜单
 import React from 'react'
 import { Link, IndexLink } from 'react-router'
-
-const styles = {
-	activeLink: {
-		'textDecoration': 'none'
-	}
-}
-
+import styles from './nav.css'
+console.log(styles)
 const Nav = () => (
-	<div className="nav-header">
-		<IndexLink to="/" activeStyle={styles.activeLink}>首页</IndexLink>
-		{" / "}
-		<Link to="blog" activeStyle={styles.activeLink}>博客</Link>
+	<div className={styles.navHeader}>
+		<IndexLink to="/" activeClassName={'activeLink'}>首页</IndexLink>
+		{" | "}
+		<Link to="blog" activeClassName={'activeLink'}>博客</Link>
 	</div>
 )
 
