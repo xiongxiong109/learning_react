@@ -2,7 +2,6 @@
 import React from 'react'
 import { Link, IndexLink } from 'react-router'
 import styles from './nav.less'
-console.log(styles)
 const Nav = () => (
 	<div className={styles.navHeader}>
 		<IndexLink to="/" activeClassName={'activeLink'}>首页</IndexLink>

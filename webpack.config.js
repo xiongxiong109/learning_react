@@ -38,7 +38,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader?modules!postcss-loader' // 添加了modules参数, 可以打开css modules功能
+				loader: 'style-loader!css-loader!postcss-loader' // 添加了modules参数, 可以打开css modules功能
 			},
 			{ // 增强less文件, 使用autoprefixer
 				test: /\.less$/,

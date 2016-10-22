@@ -1,0 +1,53 @@
+/*home*/
+/*使用变量*/
+$ft: 16px;
+$codeFm: Monaco;
+
+/*loop*/
+
+@for $i from 1 to 3 {
+	.mt$i {
+		margin-top: $(i)px;
+	}
+}
+
+/*mixin*/
+/*使用define语法定义mixin和extend*/
+@define-mixin clearfix $name {
+	&::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		clear: both;
+	}
+}
+
+/*extends*/
+@define-extend flex {
+	display: flex;
+}
+@define-extend f-vc {
+	align-items: center;
+}
+@define-extend f-hc {
+	justify-content: center;
+}
+
+h1 {
+	@extend flex;
+	@extend f-hc;
+	@extend f-vc;
+	flex-direction: column;
+	font-size: $ft;
+	font-family: $codeFm;
+	margin: auto;
+	& span:last-child {
+		font-size: calc( $ft - 4px );
+	}
+}
+
+.article {
+	@mixin clearfix article; /*p标签继承清除浮动方法*/
+}
+
